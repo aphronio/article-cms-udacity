@@ -14,11 +14,9 @@ app.config.from_object(Config)
 
 default_logging_level = logging.INFO
 app.logger.setLevel(default_logging_level)
-app.logger.debug("main debug")
-app.logger.info("main info")
-app.logger.warning("main warning")
-app.logger.error("main error")
-app.logger.critical("main critical")
+streamHandler = logging.StreamHandler()
+streamHandler.setLevel(default_logging_level)
+app.logger.addHandler(streamHandler)
 
 Session(app)
 db = SQLAlchemy(app)
